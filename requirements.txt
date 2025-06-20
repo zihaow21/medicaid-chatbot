@@ -1,0 +1,41 @@
+# AI System - Conceptual Dependencies
+# ===================================
+# 
+# Abstract dependency categories for AI applications
+
+# Core AI Framework
+langchain>=0.1.0
+transformers>=4.35.0
+torch>=2.1.0
+
+# Document Processing
+pypdf2>=3.0.1
+python-docx>=0.8.11
+
+# Vector Operations
+qdrant-client>=1.6.0
+sentence-transformers>=2.2.2
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.7
+redis>=5.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Code Quality
+black>=23.10.0
+mypy>=1.6.0
+
+# Model Adaptation
+peft>=0.6.0
+datasets>=2.14.0
+
+# Production
+gunicorn>=21.2.0 
