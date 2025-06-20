@@ -1,6 +1,5 @@
 """
 Configuration Settings - Conceptual Framework
-=============================================
 
 Demonstrates configuration management patterns for AI systems.
 Pure architectural concepts, minimal implementation.

@@ -1,6 +1,5 @@
 """
 Document Processing - Conceptual Framework
-==========================================
 
 Demonstrates document processing patterns and data preparation concepts
 for RAG systems. Pure architectural thinking, no implementation details.

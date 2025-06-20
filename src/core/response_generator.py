@@ -1,6 +1,5 @@
 """
 Response Generation - Conceptual Framework
-==========================================
 
 Demonstrates natural language generation patterns and RAG response synthesis
 concepts. Pure architectural thinking, no implementation details.

@@ -1,6 +1,5 @@
 """
 Model Adaptation - Conceptual Framework
-=======================================
 
 Demonstrates Parameter Efficient Fine-Tuning (PEFT) patterns and adaptive learning
 concepts for model customization. Pure architectural thinking, no implementation.

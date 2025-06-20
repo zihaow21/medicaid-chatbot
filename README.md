@@ -33,31 +33,6 @@ Integration Architecture:
 3. Generation: Prompt Engineering → LLM Generation → Response Synthesis
 4. Memory: Conversation Memory → User Response
 
-## Project Structure
-
-```
-medicaid-chatbot/
-├── src/
-│   ├── config/
-│   │   └── settings.py              # Environment-driven configuration patterns
-│   ├── core/                        # RAG pipeline components
-│   │   ├── document_processor.py    # PDF → structured data transformation
-│   │   ├── retrieval_engine.py      # Semantic search orchestration
-│   │   ├── response_generator.py    # Context-aware text generation
-│   │   ├── conversation_memory.py   # Multi-turn state management
-│   │   └── model_adaptation.py      # PEFT fine-tuning capabilities
-│   └── agents/
-│       └── orchestrator.py          # Multi-agent workflow coordination
-├── tests/                           # End-to-end testing framework
-│   └── e2e/                         # Complete workflow validation
-├── data/
-│   └── ABHIL_Member_Handbook.pdf   # Domain-specific knowledge source
-├── Dockerfile                       # Multi-stage containerization
-├── docker-compose.yml              # Complete system orchestration
-├── requirements.txt                 # Framework dependencies
-└── ARCHITECTURAL_CONCEPTS.md        # Detailed design documentation
-```
-
 ## Core Components
 
 ### settings.py

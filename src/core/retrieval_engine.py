@@ -1,6 +1,5 @@
 """
 Retrieval Engine - Conceptual Framework
-=======================================
 
 Demonstrates vector-based semantic search patterns and retrieval strategies
 for RAG systems. Pure architectural concepts, no implementation details.

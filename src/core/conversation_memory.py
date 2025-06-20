@@ -1,6 +1,5 @@
 """
 Conversation Memory - Conceptual Framework
-==========================================
 
 Demonstrates conversation state management patterns for multi-turn
 AI chatbot interactions. Pure architectural concepts.

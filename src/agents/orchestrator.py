@@ -1,6 +1,5 @@
 """
 Orchestrator Agent - Conceptual Framework
-=========================================
 
 Demonstrates multi-agent coordination patterns and workflow orchestration
 concepts for complex AI systems. Pure architectural thinking, no implementation.
@@ -36,7 +35,6 @@ class AgentResponse:
 class Agent(ABC):
     """
     Agent Pattern - Specialized processing units
-    
     Core Concept: Single Responsibility + Clear Interface
     """
     
@@ -57,7 +55,6 @@ class Agent(ABC):
 class QueryAnalysisAgent(Agent):
     """
     Intent Recognition & Query Understanding
-    
     Concept: Transform user input into structured processing directives
     """
     
@@ -81,7 +78,6 @@ class QueryAnalysisAgent(Agent):
 class RetrievalAgent(Agent):
     """
     Knowledge Base Access & Context Gathering
-    
     Concept: Semantic search and relevant information retrieval
     """
     
@@ -103,7 +99,6 @@ class RetrievalAgent(Agent):
 class ResponseAgent(Agent):
     """
     Natural Language Generation & Response Synthesis
-    
     Concept: Context-aware response generation using LLM
     """
     
@@ -127,7 +122,6 @@ class ResponseAgent(Agent):
 class WorkflowStep:
     """
     Declarative Workflow Definition
-    
     Concept: Task decomposition with dependency management
     """
     step_id: str
@@ -143,7 +137,6 @@ class WorkflowStep:
 class Workflow:
     """
     Workflow Engine - Task Orchestration
-    
     Concept: Coordinate agent execution based on dependencies
     """
     
@@ -199,7 +192,6 @@ class Orchestrator:
     def process_query(self, query: str) -> Dict[str, Any]:
         """
         Main Orchestration Logic
-        
         Concept: Complex task → Workflow execution → Coordinated result
         """
         
@@ -232,7 +224,6 @@ class Orchestrator:
     def _prepare_context(self, step_id: str, context: Dict, results: Dict) -> Dict[str, Any]:
         """
         Context Flow Management
-        
         Concept: Pass relevant data between processing stages
         """
         data = {"query": context["query"]}

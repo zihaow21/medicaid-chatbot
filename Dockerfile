@@ -1,6 +1,5 @@
 # AI System - Conceptual Docker Configuration
-# ===========================================
-# 
+#
 # Demonstrates containerization patterns for AI applications
 # Abstract multi-stage build concept
 
