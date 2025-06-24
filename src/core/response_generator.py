@@ -11,6 +11,7 @@ from typing import List, Optional
 from enum import Enum
 
 from .retrieval_engine import SearchResult
+from ..config.settings import settings
 
 
 class ResponseType(Enum):
@@ -24,7 +25,7 @@ class ResponseType(Enum):
 class ResponseContext:
     """
     Context aggregation for response generation
-    Concept: Query + Context + Configuration → Structured input
+    Concept: Query + Context + Configuration →Structured input
     """
     query: str
     retrieved_chunks: List[SearchResult]
@@ -130,6 +131,97 @@ class ConceptualLLM(LLMInterface):
         }
 
 
+class LlamaModel(LLMInterface):
+    """
+    Llama 3.2 Local Model Implementation
+    Concept: Local model integration pattern
+    """
+    
+    def __init__(self, model_name: str = "llama-3.2", temperature: float = 0.7):
+        self.model_name = model_name
+        self.temperature = temperature
+    
+    def generate(self, prompt: str, max_tokens: int = 500) -> str:
+        """Local Llama model generation"""
+        # Concept: Local model inference - would integrate with llama.cpp, transformers, etc.
+        return f"[Llama 3.2] Based on your Medicaid handbook, here's the information you need..."
+    
+    def get_model_info(self) -> dict:
+        """Llama model configuration"""
+        return {
+            "model": self.model_name,
+            "provider": "local",
+            "temperature": self.temperature,
+            "max_tokens": 500
+        }
+
+
+class OpenAIModel(LLMInterface):
+    """
+    OpenAI API Model Implementation
+    Concept: API-based model integration with authentication
+    """
+    
+    def __init__(self, model_name: str = "gpt-3.5-turbo", api_key: str = None, temperature: float = 0.7):
+        self.model_name = model_name
+        self.api_key = api_key
+        self.temperature = temperature
+        
+        if not self.api_key:
+            raise ValueError("OpenAI API key is required for OpenAI models")
+    
+    def generate(self, prompt: str, max_tokens: int = 500) -> str:
+        """OpenAI API generation"""
+        # Concept: API-based generation - would integrate with openai library
+        # Real implementation would look like:
+        # import openai
+        # client = openai.OpenAI(api_key=self.api_key)
+        # response = client.chat.completions.create(
+        #     model=self.model_name,
+        #     messages=[{"role": "user", "content": prompt}],
+        #     max_tokens=max_tokens,
+        #     temperature=self.temperature
+        # )
+        # return response.choices[0].message.content
+        
+        return f"[OpenAI {self.model_name}] Based on your Medicaid handbook, here's the information you need..."
+    
+    def get_model_info(self) -> dict:
+        """OpenAI model configuration"""
+        return {
+            "model": self.model_name,
+            "provider": "openai",
+            "temperature": self.temperature,
+            "max_tokens": 500,
+            "api_key_provided": bool(self.api_key)
+        }
+
+
+class LLMFactory:
+    """
+    Model Factory Pattern
+    Concept: Provider-agnostic model instantiation
+    """
+    
+    @staticmethod
+    def create_model(config) -> LLMInterface:
+        """Create appropriate model based on configuration"""
+        if config.provider == "openai":
+            return OpenAIModel(
+                model_name=config.model_name,
+                api_key=config.api_key,
+                temperature=config.temperature
+            )
+        elif config.provider == "local":
+            return LlamaModel(
+                model_name=config.model_name,
+                temperature=config.temperature
+            )
+        else:
+            # Fallback to conceptual implementation
+            return ConceptualLLM(model_name=config.model_name)
+
+
 class ResponseGenerator:
     """
     Response Generation Orchestrator
@@ -138,7 +230,7 @@ class ResponseGenerator:
     """
     
     def __init__(self, llm: Optional[LLMInterface] = None):
-        self.llm = llm or ConceptualLLM()
+        self.llm = llm or LLMFactory.create_model(settings.llm)
         self.prompt_library = PromptLibrary()
         self.response_cache = {}
     

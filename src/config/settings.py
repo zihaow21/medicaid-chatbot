@@ -14,8 +14,10 @@ import os
 class LLMConfig:
     """LLM configuration concept"""
     model_name: str = "llama-3.2"
+    provider: str = "local"  # "local" for Llama, "openai" for OpenAI
     temperature: float = 0.7
     max_tokens: int = 500
+    api_key: Optional[str] = None  # For API-based models like OpenAI
 
 
 @dataclass
@@ -46,10 +48,16 @@ class Settings:
     """
     
     def __init__(self):
+        # Support both Llama 3.2 and OpenAI models
+        model_name = os.getenv("LLM_MODEL", "llama-3.2")
+        provider = "openai" if model_name.startswith("gpt-") else "local"
+        
         self.llm = LLMConfig(
-            model_name=os.getenv("LLM_MODEL", "llama-3.2"),
+            model_name=model_name,
+            provider=provider,
             temperature=float(os.getenv("LLM_TEMPERATURE", "0.7")),
-            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "500"))
+            max_tokens=int(os.getenv("LLM_MAX_TOKENS", "500")),
+            api_key=os.getenv("OPENAI_API_KEY")  # OpenAI API key from environment
         )
         
         self.vector = VectorConfig(
@@ -58,7 +66,7 @@ class Settings:
         )
         
         self.mcp = MCPConfig(
-            server_name=os.getenv("MCP_SERVER_NAME", "medicaid-chatbot")
+            server_name=os.getenv("MCP_SERVER_NAME", "medicaid-chatbot")  
         )
         
         self.pdf_path = os.getenv("PDF_PATH", "data/ABHIL_Member_Handbook.pdf")

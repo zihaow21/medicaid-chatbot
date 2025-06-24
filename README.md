@@ -36,7 +36,7 @@ Integration Architecture:
 ## Core Components
 
 ### settings.py
-Separates LLM, Vector, and MCP configurations. MCP capabilities include tools (extract_pdf_text, chunk_document, semantic_search, generate_response) and resources (pdf_documents, text_chunks, conversation_history, vector_embeddings).
+Multi-model configuration management. Supports both local models (Llama 3.2) and API-based models (OpenAI GPT). MCP capabilities include tools (extract_pdf_text, chunk_document, semantic_search, generate_response) and resources (pdf_documents, text_chunks, conversation_history, vector_embeddings).
 
 ### document_processor.py
 Strategy pattern for PDF processing. PDFExtractor abstraction supports multiple libraries. DocumentChunk encapsulates content + metadata + embeddings. TextChunker balances context preservation with retrieval precision.
@@ -45,7 +45,7 @@ Strategy pattern for PDF processing. PDFExtractor abstraction supports multiple 
 Pattern for semantic search. EmbeddingModel abstracts text-to-vector transformation. VectorDatabase abstracts similarity search. Includes caching and component swapping capabilities.
 
 ### response_generator.py
-Template Method pattern for response generation. PromptLibrary manages templates. LLMInterface provides provider-agnostic model access. Handles context preparation and prompt engineering.
+Multi-provider LLM integration with factory pattern. LLMInterface abstraction supports Llama 3.2 (local) and OpenAI GPT (API) models.
 
 ### orchestrator.py
 Agent pattern for workflow coordination. Specialized agents: QueryAnalysisAgent, RetrievalAgent, ResponseAgent. Workflow engine manages dependencies and execution order. Standardized inter-agent communication.

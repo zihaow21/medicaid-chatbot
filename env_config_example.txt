@@ -1,0 +1,30 @@
+# Medicaid Chatbot Configuration Example
+# ======================================
+
+# Model Configuration
+# Options: "llama-3.2" (local) or "gpt-3.5-turbo", "gpt-4" (OpenAI)
+LLM_MODEL=llama-3.2
+
+# OpenAI API Configuration
+OPENAI_API_KEY=your-openai-api-key-here
+
+# LLM Parameters
+LLM_TEMPERATURE=0.7
+LLM_MAX_TOKENS=500
+
+# Vector Database Configuration
+VECTOR_DIM=384
+SIMILARITY_METRIC=cosine
+
+# MCP Configuration
+MCP_SERVER_NAME=medicaid-chatbot
+
+# Document Configuration
+PDF_PATH=data/ABHIL_Member_Handbook.pdf
+
+# Example Usage:
+# For Llama 3.2 (local): LLM_MODEL=llama-3.2
+# For OpenAI GPT-3.5: LLM_MODEL=gpt-3.5-turbo (OPENAI_API_KEY)
+# For OpenAI GPT-4: LLM_MODEL=gpt-4 (OPENAI_API_KEY)
+
+# Copy this file to .env and set your actual values 
